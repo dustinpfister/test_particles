@@ -10,7 +10,7 @@ fs = require('fs'),
 path = require('path'),
 
 port = process.argv[2] || 8888, // port 8888
-root = process.cwd(); // assume current working path is root
+root = path.join(process.cwd(), 'demos'); // assume current working path is root
 
 // create and start the server
 http.createServer(function (req, res) {
@@ -49,4 +49,5 @@ http.createServer(function (req, res) {
     });
 }).listen(port, function () {
     console.log('particles.js project is up on port: ' + port);
+	console.log('hosting root path at : ' + root);
 });
