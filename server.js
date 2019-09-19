@@ -18,8 +18,10 @@ http.createServer(function (req, res) {
     var p = path.join(root, req.url);
     // get stats of that path
     fs.stat(p, function (e, stat) {
-        // if error end
+        // if error end request
         if (e) {
+            res.writeHead(500);
+            res.write(e.message);
             res.end();
         }
         // if stats check it out
@@ -30,8 +32,10 @@ http.createServer(function (req, res) {
             }
             // try to read the path
             fs.readFile(p, 'binary', function (e, file) {
-                // if error end
+                // if error end request
                 if (e) {
+                    res.writeHead(500);
+                    res.write(e.message);
                     res.end();
                 }
                 // if file, send it out
