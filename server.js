@@ -19,7 +19,7 @@ http.createServer(function (req, res) {
     var p = path.join(root, req.url);
 
     // get stats of that path
-    fs.lstat(p, function (e, stat) {
+    fs.stat(p, function (e, stat) {
 
         // if error end
         if (e) {
@@ -60,4 +60,6 @@ http.createServer(function (req, res) {
 
     });
 
-}).listen(port);
+}).listen(port, function () {
+    console.log('particles.js project is up on port: ' + port);
+});
